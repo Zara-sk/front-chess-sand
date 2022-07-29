@@ -1,0 +1,14 @@
+@use "src/vars.scss" as *;
+
+.cell {
+  width: $cell-size;
+  height: $cell-size;
+
+  .black {
+    background-color: $cyan;
+  }
+
+  .white {
+    background-color: $white;
+  }
+}

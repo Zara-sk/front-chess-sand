@@ -1,0 +1,7 @@
+@use "src/vars.scss" as *;
+
+.board {
+  background-color: $cyan;
+  width: calc($cell-size * 8);
+  height: calc($cell-size * 8);
+}
