@@ -1,16 +1,16 @@
+import BoardSets from "../../sets/boardSets";
 import IBoard, {
   BoardAction,
   BoardActionTypes as types,
 } from "../../types/board";
 
-const initialState: IBoard = {
-  cells: [],
-};
-
-export const boardReducer = (state = initialState, action: BoardAction) => {
+export const boardReducer = (
+  state = BoardSets.DEFAULT,
+  action: BoardAction
+) => {
   switch (action.type) {
     case types.UPDATE_BOARD_INIT:
-      return state;
+      return { ...state, ...action.payload };
 
     case types.UPDATE_BOARD_MOVE:
       return state;

@@ -1,13 +1,22 @@
-import { BoardAction, BoardActionTypes as types } from "../../types/board";
+import BoardSets from "../../sets/boardSets";
+import IBoard, {
+  BoardAction,
+  BoardActionTypes as types,
+} from "../../types/board";
+import IMove from "../../types/move";
 
-const move = (): BoardAction => {
+const initBoard = (board: IBoard = BoardSets.DEFAULT): BoardAction => {
   return {
-    type: types.UPDATE_BOARD_MOVE,
-    payload: {
-      from: { x: 1, y: 2 },
-      to: { x: 2, y: 3 },
-    },
+    type: types.UPDATE_BOARD_INIT,
+    payload: board,
   };
 };
 
-export { move };
+const makeMove = (move: IMove): BoardAction => {
+  return {
+    type: types.UPDATE_BOARD_MOVE,
+    payload: move,
+  };
+};
+
+export { initBoard, makeMove };

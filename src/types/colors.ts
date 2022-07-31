@@ -1,6 +1,6 @@
 enum Colors {
-  BLACK,
-  WHITE,
+  BLACK = "black",
+  WHITE = "white",
 }
 
 export default Colors;

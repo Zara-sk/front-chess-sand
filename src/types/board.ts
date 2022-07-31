@@ -1,8 +1,10 @@
 import { ICell } from "./cell";
+import IFigure from "./figure";
 import IMove from "./move";
 
 interface IBoard {
   cells: ICell[][] | [];
+  figures: IFigure[] | [];
 }
 
 enum BoardActionTypes {
@@ -10,6 +12,10 @@ enum BoardActionTypes {
   UPDATE_BOARD_MOVE = "UPDATE_BOARD_MOVE",
   UPDATE_BOARD_BACK = "UPDATE_BOARD_BACK",
   UPDATE_BOARD_HINT = "UPDATE_BOARD_HINT",
+}
+
+enum BoardNames {
+  DEFAULT = "DEFAULT",
 }
 
 interface UpdateBoardInitAction {
@@ -39,5 +45,5 @@ type BoardAction =
   | UpdateBoardInitAction;
 
 export default IBoard;
-export { BoardActionTypes };
+export { BoardActionTypes, BoardNames };
 export type { BoardAction };

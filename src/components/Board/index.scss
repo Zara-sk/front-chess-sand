@@ -1,7 +1,9 @@
 @use "src/vars.scss" as *;
 
 .board {
-  background-color: $cyan;
+  position: relative;
   width: calc($cell-size * 8);
   height: calc($cell-size * 8);
+  display: flex;
+  flex-wrap: wrap;
 }

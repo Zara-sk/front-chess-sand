@@ -1,0 +1,23 @@
+@use "src/vars.scss" as *;
+
+.figure {
+  position: absolute;
+  width: $cell-size;
+  height: $cell-size;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @for $i from 0 to 8 {
+    @for $j from 0 to 8 {
+      &.pos-#{$i}-#{$j} {
+        left: $cell-size * $j;
+        top: $cell-size * $i;
+      }
+    }
+  }
+
+  img {
+    width: $cell-size;
+  }
+}

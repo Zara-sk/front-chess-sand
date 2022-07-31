@@ -4,11 +4,11 @@
   width: $cell-size;
   height: $cell-size;
 
-  .black {
-    background-color: $cyan;
+  &.black {
+    background-color: $cyan2;
   }
 
-  .white {
+  &.white {
     background-color: $white;
   }
 }

@@ -4,3 +4,5 @@ enum Hints {
   CHECK,
   CHECKMATE,
 }
+
+export default Hints;
