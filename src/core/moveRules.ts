@@ -22,13 +22,10 @@ const cellHintDispathcer = (
       hint: Hints.MOVE,
     };
   } else {
-    // let hint: Hints;
-    // switch (hintedFigure) {
-    // }
     return {
       x,
       y,
-      hint: Hints.ATTACK,
+      hint: hintedFigure.color == figure.color ? Hints.NO : Hints.ATTACK,
     };
   }
 };
