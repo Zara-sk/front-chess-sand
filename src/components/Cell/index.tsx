@@ -2,7 +2,7 @@ import clsx from "clsx";
 import React from "react";
 
 import { useActions } from "../../hooks/useActions";
-import { ICell } from "../../types/cell";
+import ICell from "../../types/cell";
 
 import "./index.scss";
 

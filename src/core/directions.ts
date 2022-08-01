@@ -1,12 +1,24 @@
 import { range } from "../helper/range";
+import ICell from "../types/cell";
 import { Direction, Directions } from "../types/direction";
 
-const cutDirection = (direction: Direction) => {};
+// "режет" направление когда встречает любую фигуру
+const getCuttedDirection = (
+  cells: ICell[][],
+  direction: Direction
+): Direction => {
+  for (let i = 0; i < direction.length; i++) {
+    const x = direction[i][0];
+    const y = direction[i][1];
+    if (cells[x][y].figure != null) return direction.slice(0, i + 1);
+  }
+  return direction;
+};
 
+// направления, коллинеарные базисным векторам
+// порядок: up, right, down, left
 const getStraightDirections = (x: number, y: number): number[][][] => {
-  // направления, коллинеарные базисным векторам
-  // порядок: up, right, down, left
-  const directions = [];
+  const directions: Directions = [];
   directions.push(
     range(0, x)
       .map((el) => [el, y])
@@ -22,10 +34,10 @@ const getStraightDirections = (x: number, y: number): number[][][] => {
   return directions;
 };
 
+// Диагональные направления
+// Порядок: UR DR DL UL
 const getDiagonalDirections = (x: number, y: number): Directions => {
-  // Диагональные направления
-  // Порядок: UR DR DL UL
-  const directions = []; // u r d l
+  const directions: Directions = []; // u r d l
   directions.push(
     range(0, x)
       .map((el) => [el, y])
@@ -41,4 +53,4 @@ const getDiagonalDirections = (x: number, y: number): Directions => {
   return directions;
 };
 
-export { getStraightDirections, getDiagonalDirections };
+export { getStraightDirections, getDiagonalDirections, getCuttedDirection };

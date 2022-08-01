@@ -8,4 +8,11 @@ enum Hints {
   CHECKMATE = "checkmate",
 }
 
-export default Hints;
+interface IHint {
+  x: number;
+  y: number;
+  hint: Hints;
+}
+
+export { Hints };
+export default IHint;

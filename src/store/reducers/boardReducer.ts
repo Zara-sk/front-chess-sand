@@ -4,8 +4,8 @@ import IBoard, {
   BoardAction,
   BoardActionTypes as types,
 } from "../../types/board";
-import { ICell } from "../../types/cell";
-import Hints from "../../types/hints";
+import ICell from "../../types/cell";
+import { Hints } from "../../types/hints";
 
 export const boardReducer = (
   state = BoardSets.DEFAULT,

@@ -1,4 +1,4 @@
-import { ICell } from "../types/cell";
+import ICell from "../types/cell";
 
 const copy = (cells: ICell[][]): ICell[][] => {
   return cells.map((row, i) => {

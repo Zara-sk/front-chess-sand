@@ -1,14 +1,20 @@
 import { copy } from "../helper/boardHelper";
-import { ICell } from "../types/cell";
+import ICell from "../types/cell";
+import { Directions } from "../types/direction";
 import IFigure, { Figures } from "../types/figure";
-import Hints from "../types/hints";
-import { basicMoveRuleDispatcher } from "./moveRules";
-
-// внутрненняя функция для расставления подсказок
-const arrangeHints = (figure: IFigure) => {};
+import IHint, { Hints } from "../types/hints";
+import { boardMoveRuleDispatcher } from "./moveRules";
 
 // аккумулирование доски
-const putHints = (cells: ICell[][], hints: number[][]) => {};
+const CellsWithHints = (cells: ICell[][], figure: IFigure): ICell[][] => {
+  const hints: IHint[] = boardMoveRuleDispatcher(cells, figure);
+  const clearedCells = CellsWithoutHints(cells);
+  hints.forEach((hint: IHint) => {
+    clearedCells[hint.x][hint.y].hint = hint.hint;
+  });
+
+  return clearedCells;
+};
 
 const CellsWithoutHints = (cells: ICell[][]): ICell[][] => {
   return cells.map((row) => {
@@ -22,22 +28,16 @@ const CellsWithoutHints = (cells: ICell[][]): ICell[][] => {
 // если в указанной клетке есть фигура, то подсказки
 // показываются, в противном случае - убираются
 const toggleHintsOnCells = (
-  currentCells: ICell[][],
+  cells: ICell[][],
   x: number,
   y: number
 ): ICell[][] => {
-  const figure = currentCells[x][y].figure;
-  if (!figure) {
-    return CellsWithoutHints(currentCells);
+  const figure = cells[x][y].figure;
+
+  if (!figure || cells[x][y].hint == Hints.SELECTED) {
+    return CellsWithoutHints(cells);
   } else {
-    const directions = basicMoveRuleDispatcher(figure);
-    const cells = copy(currentCells);
-    directions.forEach((direction) =>
-      direction.forEach((pos) => {
-        cells[pos[0]][pos[1]].hint = Hints.SELECTED;
-      })
-    );
-    return cells;
+    return CellsWithHints(cells, figure);
   }
 };
 

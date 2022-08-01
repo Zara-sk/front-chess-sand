@@ -2,9 +2,9 @@ import IBoard, { BoardNames } from "../types/board";
 import sets from "../sets/boardSets.json";
 import Colors from "../types/colors";
 import Figure, { Figures, FigureLetters } from "../types/figure";
-import { ICell } from "../types/cell";
+import ICell from "../types/cell";
 import IFigure from "../types/figure";
-import Hints from "../types/hints";
+import { Hints } from "../types/hints";
 
 const fetchFigure = (x: number, y: number, letter: string): Figure | null => {
   switch (letter) {

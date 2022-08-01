@@ -1,4 +1,4 @@
-import { ICell } from "./cell";
+import ICell from "./cell";
 import IFigure from "./figure";
 import IMove from "./move";
 

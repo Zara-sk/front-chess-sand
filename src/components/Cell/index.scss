@@ -9,12 +9,24 @@
     &.selected {
       background-color: $cyan2;
     }
+    &.move {
+      background-color: #7baa84;
+    }
+    &.attack {
+      background-color: #b4ad44;
+    }
   }
 
   &.white {
     background-color: $white;
     &.selected {
       background-color: $cyan2;
+    }
+    &.move {
+      background-color: #85bd90;
+    }
+    &.attack {
+      background-color: #b4ad44;
     }
   }
 }
