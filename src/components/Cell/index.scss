@@ -5,10 +5,16 @@
   height: $cell-size;
 
   &.black {
-    background-color: $cyan2;
+    background-color: #a5aaac;
+    &.selected {
+      background-color: $cyan2;
+    }
   }
 
   &.white {
     background-color: $white;
+    &.selected {
+      background-color: $cyan2;
+    }
   }
 }

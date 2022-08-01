@@ -4,6 +4,7 @@ import Colors from "../types/colors";
 import Figure, { Figures, FigureLetters } from "../types/figure";
 import { ICell } from "../types/cell";
 import IFigure from "../types/figure";
+import Hints from "../types/hints";
 
 const fetchFigure = (x: number, y: number, letter: string): Figure | null => {
   switch (letter) {
@@ -26,7 +27,7 @@ const fetchCell = (x: number, y: number, figure: IFigure | null): ICell => {
     y: y,
     id: x * 10 + y,
     color: (x + y) % 2 ? Colors.BLACK : Colors.WHITE,
-    hint: null,
+    hint: Hints.NO,
     figure: figure,
   };
 };

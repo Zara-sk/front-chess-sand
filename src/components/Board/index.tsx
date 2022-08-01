@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
+import IBoard from "../../types/board";
 import Cell from "../Cell";
 import Figure from "../Figure";
 
 import "./index.scss";
 
 function Board() {
-  const board = useTypedSelector((state) => state.board);
+  const board: IBoard = useTypedSelector((state) => state.board);
 
   return (
     <div className="board">

@@ -12,6 +12,13 @@ const initBoard = (board: IBoard = BoardSets.DEFAULT): BoardAction => {
   };
 };
 
+const toggleHint = (x: number, y: number): BoardAction => {
+  return {
+    type: types.UPDATE_BOARD_HINT,
+    payload: { x, y },
+  };
+};
+
 const makeMove = (move: IMove): BoardAction => {
   return {
     type: types.UPDATE_BOARD_MOVE,
@@ -19,4 +26,4 @@ const makeMove = (move: IMove): BoardAction => {
   };
 };
 
-export { initBoard, makeMove };
+export { initBoard, makeMove, toggleHint };

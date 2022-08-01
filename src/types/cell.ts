@@ -1,5 +1,5 @@
 import Colors from "./colors";
-import Figure from "./figure";
+import IFigure from "./figure";
 import Hints from "./hints";
 
 interface ICell {
@@ -9,7 +9,7 @@ interface ICell {
   readonly color: Colors;
 
   hint: Hints | null;
-  figure: Figure | null;
+  figure: IFigure | null;
 }
 
 export type { ICell };

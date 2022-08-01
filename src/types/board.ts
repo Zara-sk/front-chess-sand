@@ -16,6 +16,9 @@ enum BoardActionTypes {
 
 enum BoardNames {
   DEFAULT = "DEFAULT",
+  TEST1 = "TEST1",
+  TEST2 = "TEST2",
+  TEST3 = "TEST3",
 }
 
 interface UpdateBoardInitAction {
