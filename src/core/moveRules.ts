@@ -6,6 +6,8 @@ import IHint, { Hints } from "../types/hints";
 import {
   getCuttedDirection,
   getDiagonalDirections,
+  getKingDirections,
+  getKnightDirections,
   getStraightDirections,
 } from "./directions";
 
@@ -44,20 +46,20 @@ const basicMoveRuleDispatcher = (figure: IFigure): Directions => {
       return getStraightDirections(x, y);
 
     case Figures.KNIGHT:
-      return [];
+      return getKnightDirections(x, y);
 
     case Figures.BISHOP:
       return getDiagonalDirections(x, y);
 
     case Figures.QUEEN:
-      return [];
+      return getStraightDirections(x, y).concat(getDiagonalDirections(x, y));
 
     case Figures.KING:
       // получаем directions возможные для хода
       // получаем directions, откуда может идти шах
       // оставляем те, где он будет
       // вычитаем
-      return [];
+      return getKingDirections(x, y);
 
     case Figures.PAWN:
       return [];
@@ -92,6 +94,24 @@ const boardMoveRuleDispatcher = (
   });
 
   return hints;
+};
+
+const getBasicVariableDirections = (figure: IFigure): Directions => {
+  return [];
+};
+
+const getPossibleDirections = (
+  cells: ICell[][],
+  figure: IFigure
+): Directions => {
+  const basicDirections: Directions = getBasicVariableDirections(figure);
+
+  return basicDirections;
+};
+
+const getPossibleMoveHints = (cells: ICell[][], figure: IFigure): IHint[] => {
+  const possibleDirections: Directions = getPossibleDirections(cells, figure);
+  return [];
 };
 
 export { boardMoveRuleDispatcher };

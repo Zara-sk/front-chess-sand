@@ -1,4 +1,4 @@
-import { range } from "../helper/range";
+import { range, range2d } from "../helper/range";
 import ICell from "../types/cell";
 import { Direction, Directions } from "../types/direction";
 
@@ -19,38 +19,74 @@ const getCuttedDirection = (
 // порядок: up, right, down, left
 const getStraightDirections = (x: number, y: number): number[][][] => {
   const directions: Directions = [];
-  directions.push(
-    range(0, x)
-      .map((el) => [el, y])
-      .reverse()
-  );
+  directions.push(range(x, 0).map((el) => [el, y]));
   directions.push(range(y + 1, 8).map((el) => [x, el]));
   directions.push(range(x + 1, 8).map((el) => [el, y]));
-  directions.push(
-    range(0, y)
-      .map((el) => [x, el])
-      .reverse()
-  );
+  directions.push(range(y, 0).map((el) => [x, el]));
   return directions;
 };
 
 // Диагональные направления
 // Порядок: UR DR DL UL
 const getDiagonalDirections = (x: number, y: number): Directions => {
-  const directions: Directions = []; // u r d l
-  directions.push(
-    range(0, x)
-      .map((el) => [el, y])
-      .reverse()
-  );
-  directions.push(range(y + 1, 8).map((el) => [x, el]));
-  directions.push(range(x + 1, 8).map((el) => [el, y]));
-  directions.push(
-    range(0, y)
-      .map((el) => [x, el])
-      .reverse()
-  );
+  const directions: Directions = [];
+  directions.push(range2d(x, 0, y + 1, 8).map(([el1, el2]) => [el1, el2]));
+  directions.push(range2d(x + 1, 8, y + 1, 8).map(([el1, el2]) => [el1, el2]));
+  directions.push(range2d(x + 1, 8, y, 0).map(([el1, el2]) => [el1, el2]));
+  directions.push(range2d(x, 0, y, 0).map(([el1, el2]) => [el1, el2]));
   return directions;
 };
 
-export { getStraightDirections, getDiagonalDirections, getCuttedDirection };
+const getKnightVariants = (x: number, y: number): number[][] => {
+  return [
+    [x + 2, y - 1],
+    [x + 2, y + 1],
+    [x - 2, y - 1],
+    [x - 2, y + 1],
+    [x + 1, y - 2],
+    [x + 1, y + 2],
+    [x - 1, y - 2],
+    [x - 1, y + 2],
+  ];
+};
+
+const getKnightDirections = (x: number, y: number): Directions => {
+  const directions: Directions = [];
+  getKnightVariants(x, y).forEach((v) => {
+    if (0 <= v[0] && v[0] <= 7 && 0 <= v[1] && v[1] <= 7) {
+      directions.push([v]);
+    }
+  });
+  return directions;
+};
+
+const getKingVariants = (x: number, y: number): number[][] => {
+  return [
+    [x + 1, y + 1],
+    [x + 1, y],
+    [x + 1, y - 1],
+    [x - 1, y + 1],
+    [x - 1, y],
+    [x - 1, y - 1],
+    [x, y - 1],
+    [x, y + 1],
+  ];
+};
+
+const getKingDirections = (x: number, y: number): Directions => {
+  const directions: Directions = [];
+  getKingVariants(x, y).forEach((v) => {
+    if (0 <= v[0] && v[0] <= 7 && 0 <= v[1] && v[1] <= 7) {
+      directions.push([v]);
+    }
+  });
+  return directions;
+};
+
+export {
+  getStraightDirections,
+  getDiagonalDirections,
+  getCuttedDirection,
+  getKnightDirections,
+  getKingDirections,
+};
